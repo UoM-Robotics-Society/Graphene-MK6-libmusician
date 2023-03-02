@@ -1,0 +1,9 @@
+{
+    "name": "Graphene 6 libmusician",
+    "version": "6.0.0",
+    "description": "The libmusician backend required for orchestra instruments to interface with the Graphene 6 systems.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/UoM-Robotics-Society/Graphene-MK6-libmusician.git"
+    }
+}
