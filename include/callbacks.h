@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 void lm_do_note_up(uint32_t time, uint8_t channel, uint8_t note, uint8_t vel);
 void lm_do_note_down(uint32_t time, uint8_t channel, uint8_t note, uint8_t vel);

@@ -13,6 +13,12 @@ uint8_t lm_g6_ibuf[64];
 uint8_t lm_g6_obuf[64];
 uint8_t lm_g6_obuf_ptr = 0;
 
+#define lm_g6_write(data)                    \
+    do {                                     \
+        lm_g6_obuf[lm_g6_obuf_ptr++] = data; \
+        lm_g6_sum += data;                   \
+    } while (0)
+
 typedef enum {
     lm_g6_state_waiting = 0,
     lm_g6_state_got_sync,

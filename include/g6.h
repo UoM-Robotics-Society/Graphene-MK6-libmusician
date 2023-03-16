@@ -1,5 +1,7 @@
 #include <stdint.h>
 
+extern uint8_t lm_g6_node_id;
+
 void lm_g6_tick(void);
 
 #define LM_G6_SYNC 0xE0
@@ -9,8 +11,9 @@ void lm_g6_tick(void);
 #define LM_G6_NODE_BROADCAST 0xFF
 #define LM_G6_NODE_UNSET LM_G6_NODE_BROADCAST
 
+// These values are inherited from the JAMMA spec
 #define LM_G6_VERSION_CMD 0x13   // 1.3
-#define LM_G6_VERSION_G6 0x20   // 2.0
+#define LM_G6_VERSION_G6 0x20    // 2.0
 #define LM_G6_VERSION_COMM 0x10  // 1.0
 
 #define LM_G6_STATUS_OK 0x01
@@ -26,7 +29,6 @@ void lm_g6_tick(void);
 
 #define LM_G6_FEATURE_PAD 0x00
 #define LM_G6_FEATURE_EOF 0x00
-// We're disregarding the per-spec feature list, because it's heavily arcade-centric
 #define LM_G6_FEATURE_NOTE_CHANNEL 0x01
 #define LM_G6_FEATURE_LIGHT_CHANNEL 0x02
 #define LM_G6_FEATURE_CONTROL_CHANNEL 0x03
@@ -56,13 +58,3 @@ void lm_g6_tick(void);
 #define LM_G6_CMD_GRAPHENE_UP 0x71
 #define LM_G6_CMD_GRAPHENE_LIGHT 0x72
 #define LM_G6_CMD_GRAPHENE_CONTROL 0x73
-
-extern uint8_t lm_g6_sum;
-extern uint8_t lm_g6_ibuf[64];
-extern uint8_t lm_g6_obuf[64];
-extern uint8_t lm_g6_obuf_ptr;
-#define lm_g6_write(data)                   \
-    do {                                     \
-        lm_g6_obuf[lm_g6_obuf_ptr++] = data; \
-        lm_g6_sum += data;                  \
-    } while (0)
