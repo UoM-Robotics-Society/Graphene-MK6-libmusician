@@ -1,7 +1,6 @@
 #include "lm.h"
 
 #include "g6.h"
-#include "platform.h"
 
 void lm_setup() { lm_platform_setup(); }
 

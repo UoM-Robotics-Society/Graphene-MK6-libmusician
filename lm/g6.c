@@ -2,7 +2,6 @@
 
 #include <string.h>
 
-#include "callbacks.h"
 #include "lm.h"
 
 uint8_t lm_g6_node_id = LM_G6_NODE_UNSET;
