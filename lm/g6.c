@@ -4,7 +4,6 @@
 
 #include "callbacks.h"
 #include "lm.h"
-#include "platform.h"
 
 uint8_t lm_g6_node_id = LM_G6_NODE_UNSET;
 // lm_g6_sum will overflow, this is intentional
