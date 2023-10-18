@@ -38,7 +38,11 @@ uint8_t lm_g6_read() {
         return data;
     }
 
-    if (data == LM_G6_MARK) data = lm_platform_serial_read_one() + 1;
+    if (data == LM_G6_MARK){
+        while (!lm_platform_serial_available())
+            ;
+        data = lm_platform_serial_read_one() + 1;
+    }
     lm_g6_sum += data;
     return data;
 }
@@ -259,12 +263,12 @@ lm_g6_process_cmd:;
 
             // Action commands have no response to avoid clugging the bus!
             case LM_G6_CMD_GRAPHENE_DOWN:
-                lm_do_note_down(*((uint32_t*)&(lm_g6_ibuf[ptr])), lm_g6_ibuf[ptr + 4],
+                lm_do_note_on(*((uint32_t*)&(lm_g6_ibuf[ptr])), lm_g6_ibuf[ptr + 4],
                                 lm_g6_ibuf[ptr + 5], lm_g6_ibuf[ptr + 6]);
                 ptr += 6;
                 break;
             case LM_G6_CMD_GRAPHENE_UP:
-                lm_do_note_up(*((uint32_t*)&(lm_g6_ibuf[ptr])), lm_g6_ibuf[ptr + 4],
+                lm_do_note_off(*((uint32_t*)&(lm_g6_ibuf[ptr])), lm_g6_ibuf[ptr + 4],
                               lm_g6_ibuf[ptr + 5], lm_g6_ibuf[ptr + 6]);
                 ptr += 6;
                 break;
