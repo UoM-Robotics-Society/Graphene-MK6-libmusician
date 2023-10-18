@@ -3,6 +3,7 @@
 extern uint8_t lm_g6_node_id;
 
 void lm_g6_tick(void);
+void lm_g6_write(uint8_t data);
 
 #define LM_G6_SYNC 0xE0
 #define LM_G6_MARK 0xD0

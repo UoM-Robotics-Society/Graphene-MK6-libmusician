@@ -6,6 +6,7 @@ extern "C" {
 
 #include <stdint.h>
 
+#include "platform.h"
 #include "callbacks.h"
 
 void lm_setup(void);

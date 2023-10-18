@@ -13,12 +13,6 @@ uint8_t lm_g6_ibuf[64];
 uint8_t lm_g6_obuf[64];
 uint8_t lm_g6_obuf_ptr = 0;
 
-#define lm_g6_write(data)                    \
-    do {                                     \
-        lm_g6_obuf[lm_g6_obuf_ptr++] = data; \
-        lm_g6_sum += data;                   \
-    } while (0)
-
 typedef enum {
     lm_g6_state_waiting = 0,
     lm_g6_state_got_sync,
@@ -28,6 +22,11 @@ typedef enum {
     lm_g6_state_sum,
 } lm_g6_state_t;
 lm_g6_state_t lm_g6_state;
+
+void lm_g6_write(uint8_t data) {
+    lm_g6_obuf[lm_g6_obuf_ptr++] = data;
+    lm_g6_sum += data;
+}
 
 uint8_t lm_g6_read() {
     while (!lm_platform_serial_available())
